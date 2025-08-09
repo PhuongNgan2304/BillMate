@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { CommonModule } from "@angular/common";
 
 @Component({
   selector: 'app-splash-screen',
@@ -8,11 +10,17 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ['./splash-screen.css']
 })
 export class SplashScreenComponent implements OnInit {
-  isHidden = false;
+  animateLogo = false;
+
+  constructor(private router: Router) {}
 
   ngOnInit():void {
     setTimeout(() => {
-      this.isHidden = true;
-    }, 3000); // Hide after 3 seconds
+      this.animateLogo = true;
+    }, 2500);
+
+    setTimeout(() => {
+      this.router.navigate(['/home']);
+    }, 3000); 
   }
 }
