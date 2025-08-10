@@ -6,32 +6,60 @@
 /* HEADER */
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  margin-top: -20px;
-}
-
-.logo-small {
-  width: 150px;
-  height: auto;
-  margin-left: -20px;
+  margin-top: 0px;
 }
 
 .auth-buttons {
   display: flex;
-  gap: 10px;
+  gap: 30px;
 
-  .btn {
+  /* .btn {
     padding: 8px 16px;
     background-color: #0c567a;
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    transition: all 0.3s ease;
     &:hover {
         background-color: #09425c;
     }
-  }
+  } */
+}
+
+.btn{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-signin {
+  background-color: #0c567a;
+  color: white;
+}
+
+.btn-signin:hover {
+  background-color: #09425c;
+}
+
+.btn-signup {
+  background-color: white;
+  color: #0c567a;
+  border: 2px solid #0c567a;
+}
+
+.btn-signup:hover {
+  background-color: #0c567a;
+  color: white;
 }
 
 /* BODY */

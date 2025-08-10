@@ -1,4 +1,4 @@
-.splash-container{
+/* .splash-container{
     position: fixed;
     top: 0;
     left: 0;
@@ -11,24 +11,18 @@
     align-items: center;
     z-index: 999;
     transition: opacity 0.8s ease-in-out;
-}
+} */
 
-.logo {
+/* .logo {
     width: 440px;
     height: 410px;
     margin-bottom: 0px;
     object-fit: cover;
     animation: zoomIn 1s ease-in-out;
     transition: all 0.5s ease-in-out;
-}
+} */
 
-.logo-small {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-}
-
-.fade-out {
+/* .fade-out {
     opacity: 0;
     pointer-events: none;
 }
@@ -42,4 +36,4 @@
         transform: scale(1);
         opacity: 1;
     }
-}
+} */

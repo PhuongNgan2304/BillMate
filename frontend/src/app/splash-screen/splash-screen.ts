@@ -10,17 +10,23 @@ import { CommonModule } from "@angular/common";
   styleUrls: ['./splash-screen.css']
 })
 export class SplashScreenComponent implements OnInit {
-  animateLogo = false;
-
   constructor(private router: Router) {}
 
-  ngOnInit():void {
-    setTimeout(() => {
-      this.animateLogo = true;
-    }, 2500);
-
-    setTimeout(() => {
-      this.router.navigate(['/home']);
-    }, 3000); 
+  ngOnInit(): void {
+      
   }
+
+  // animateLogo = false;
+
+  // constructor(private router: Router) {}
+
+  // ngOnInit():void {
+  //   setTimeout(() => {
+  //     this.animateLogo = true;
+  //   }, 2500);
+
+  //   setTimeout(() => {
+  //     this.router.navigate(['/home']);
+  //   }, 3000); 
+  // }
 }

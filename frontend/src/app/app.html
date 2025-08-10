@@ -1,2 +1,12 @@
 <!-- <app-splash-screen></app-splash-screen> -->
-<router-outlet />
+<!-- <div class="global-logo" [class.move-to-corner]="logoInCorner">
+    <img [src]="logoSrc" alt="logo"/>
+</div> 
+<router-outlet></router-outlet> -->
+<div class="global-logo center" 
+     [class.move-to-corner]="logoInCorner" 
+     [class.animate]="animateLogo">
+  <img [src]="logoSrc" alt="logo"/>
+</div>
+<router-outlet></router-outlet>
+

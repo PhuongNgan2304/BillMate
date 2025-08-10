@@ -1,12 +1,32 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { trigger, style, animate, transition } from '@angular/animations';
+
 
 @Component({
   selector: 'app-home-screen',
-  imports: [],
+  imports: [CommonModule],
   standalone: true,
   templateUrl: './home-screen.html',
-  styleUrl: './home-screen.css'
+  styleUrl: './home-screen.css',
+  animations:[
+    trigger('fadeSlideIn', [
+      transition(':enter', [
+        style({opacity: 0, transform: 'translateY(-10px)'}),
+        animate('0.6s ease-out', style({opacity: 1, transform: 'translateY(0)'}))  
+      ])
+    ])
+  ]
 })
 export class HomeScreen {
+  authButtons = false;
 
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    if(this.router.url === '/home'){
+      this.authButtons = true;
+    }
+  }
 }
