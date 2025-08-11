@@ -14,6 +14,21 @@
         </div>
     </header>
 
+    <!-- TABS -->
+    <div class="tabs">
+        <button class="tab"
+            [class.active]="activeTab === 'invoices'"
+            (click)="setActivetab('invoices')">
+            INVOICES
+        </button>
+
+        <button class="tab"
+            [class.active]="activeTab === 'clients'"
+            (click)="setActiveTab('clients')">
+            CLIENTS
+        </button>
+     </div>
+
     <!-- BODY -->
     <main class="body">
         <!-- <div class="clients-section slide-from-left">

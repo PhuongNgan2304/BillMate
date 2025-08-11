@@ -13,7 +13,7 @@ import { HomeScreen } from './home-screen/home-screen';
 export class App {
   logoSrc = 'assets/logo-invomate2.png';
   logoInCorner = false;
-  animateLogo = false;
+  animateLogo = true;
 
   constructor(private router: Router) { }
 
@@ -21,7 +21,7 @@ export class App {
     if (this.router.url === '/') {
       //Bắt đầu splash screen
       setTimeout(() => {
-        this.animateLogo = true;
+        //this.animateLogo = true;
         //this.logoInCorner = true;
       }, 0);
 
@@ -34,7 +34,7 @@ export class App {
         this.animateLogo = false;
         this.logoSrc = 'assets/logo-invomate2-removebg.png';
         this.router.navigate(['/home']);
-      }, 3000);
+      }, 2500);
     }
   }
 }
