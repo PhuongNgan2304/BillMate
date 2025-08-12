@@ -62,6 +62,144 @@
   color: white;
 }
 
+.tabs {
+  margin-top: 50px;
+  gap: 10px;
+  display: flex;
+  background: #f5f8fa;
+  padding: 10px 20px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.tab{
+  padding: 10px 30px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #0c567a;
+  /* border: 1px solid #0c567a; */
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 8px 8px 0 0;
+  transition: 0.3s;
+}
+
+.tab:hover {
+  background: #c1e1f0;
+}
+
+.tab.active {
+  background: #0c567a;
+  color: white;
+}
+
+.content {
+  display: flex;    
+  min-height: 80vh;
+}
+
+.sidebar {
+  background: #ebf4f6;
+  border-right: 1px solid #ddd;
+  padding: 20px;
+  width: 220px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  font-weight: bold;
+}
+
+.sidebar li {
+  padding: 12px;
+  cursor: pointer;
+  color: #0e3136; 
+  font-weight: bold;
+  border-radius: 6px;
+  border: solid 1px #2d767f; 
+  font-weight: 500;
+  transition: 0.3s;
+  margin-bottom: 10px;
+}
+
+.sidebar li.active,
+.sidebar li:hover {
+  background: #2d767f;
+  color: white;
+  font-weight: bold;
+}
+
+.body-section{
+  padding: 20px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  color: #333;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.section-header i {
+  font-size: 1.5rem; 
+  color: #333;
+}
+
+.section-header h2 {
+  margin: 0;
+}
+
+.search-box {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 220px;
+  position: absolute;
+  right: 30px;
+}
+
+.filters {
+  display: flex;
+  margin-top: 20px;
+}
+
+.btn-filter{
+  background-color: white;
+  color: #0c567a;
+  border: 1px solid #0c567a;
+}
+
+.table-container {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.invoice-table th,
+.invoice-table td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.invoice-table th {
+  background: #f0f5f7;
+  font-weight: bold;
+}
+
+.invoice-table tr:hover {
+  background: #f9f9f9;
+}
+
+
 /* BODY */
 .body {
   display: flex;

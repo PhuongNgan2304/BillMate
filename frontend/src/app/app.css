@@ -36,7 +36,7 @@
 } */
 
 .global-logo.center {
-  position: fixed;
+  position: absolute;
   width: 440px;
   height: auto;
   z-index: 1000;
@@ -47,7 +47,7 @@
 }
 
 .global-logo.center.animate {
-  position: fixed;
+  position: absolute;
   width: 440px;
   height: auto;
   z-index: 1000;

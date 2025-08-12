@@ -22,6 +22,17 @@ import { trigger, style, animate, transition } from '@angular/animations';
 export class HomeScreen {
   authButtons = false;
 
+  activeTab: string = 'invoices';// default tab
+  activeFunction: string = 'readInvoices'; // default function
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+  }
+
+  setActiveFunction(func: string) {
+    this.activeFunction = func;
+  }
+
   constructor(private router: Router) {}
 
   ngOnInit(): void {

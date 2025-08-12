@@ -16,29 +16,115 @@
 
     <!-- TABS -->
     <div class="tabs">
-        <button class="tab"
-            [class.active]="activeTab === 'invoices'"
-            (click)="setActivetab('invoices')">
+        <button class="tab" [class.active]="activeTab === 'invoices'" (click)="setActiveTab('invoices')">
             INVOICES
         </button>
 
-        <button class="tab"
-            [class.active]="activeTab === 'clients'"
-            (click)="setActiveTab('clients')">
+        <button class="tab" [class.active]="activeTab === 'clients'" (click)="setActiveTab('clients')">
             CLIENTS
         </button>
-     </div>
+    </div>
 
-    <!-- BODY -->
-    <main class="body">
-        <!-- <div class="clients-section slide-from-left">
-            <button class="main-btn">CLIENTS</button>
-            <div class="image-box">Image Client</div>
+    <!-- <div *ngIf="activeTab === 'invoices'" class="tab-content invoices">
+        <h2>Invoices</h2>
+        <p>Manage your invoices efficiently.</p>
+        <button class="main-btn">Create Invoice</button>
+    </div> -->
+
+    <!-- <div *ngIf="activeTab === 'clients'" class="tab-content clients">
+        <h2>Clients</h2>
+        <p>Manage your clients effectively.</p>
+        <button class="main-btn">Add Client</button>
+    </div> -->
+
+
+    <!-- MAIN CONTENT -->
+    <div class="content">
+        <!-- Sidebar -->
+        <div *ngIf="activeTab === 'invoices'" class="sidebar invoices">
+            <div class="tab-content invoices">
+                <ul>
+                    <li class="function" [class.active]="activeFunction ==='readInvoices'"
+                        (click)="setActiveFunction('readInvoices')">View list of invoices</li>
+                    <li class="function" [class.active]="activeFunction ==='createInvoices'"
+                        (click)="setActiveFunction('createInvoices')">Create an invoice</li>
+                </ul>
+            </div>
         </div>
 
-        <div class="invoices-section slide-from-right">
-            <div class="image-box">Image Invoice</div>
-            <button class="main-btn">INVOICES</button>
-        </div> -->
-    </main>
-</div>
+        <!-- Invoice Section -->
+        <div *ngIf="activeTab === 'invoices' && activeFunction === 'readInvoices'" class="body-section invoices">
+            <div class="section-header invoices">
+                <!-- <i class="fa-solid fa-file-invoice-dollar"></i> -->
+                <h2>Invoices List</h2>
+                <input type="text" placeholder="Search..." class="search-box" />
+                <!-- <p>Manage your invoices efficiently.</p>
+                <button class="main-btn">Create Invoice</button> -->
+            </div>
+
+            <!-- Filters -->
+            <div class="filters">
+                <button class="btn btn-filter">
+                    <i class="fa-solid fa-filter"></i>
+                    Filter
+                </button>
+            </div>
+
+            <!-- Table -->
+            <div class="table-container">
+                <table class="invoice-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Invoice Number</th>
+                            <th>Invoice Date</th>
+                            <th>Prepared By</th>
+                            <th>Client Name</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>09874678</td>
+                            <td>22-Jan-2025</td>
+                            <td>Thang Nguyen</td>
+                            <td>Bolt Baron</td>
+                            <td>Đã thanh toán</td>
+                        </tr>
+                        <!-- <tr *ngFor="let item of invoices; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ item.invoiceNumber }}</td>
+                            <td>{{ item.invoiceDate }}</td>
+                            <td>{{ item.preparedBy }}</td>
+                            <td>{{ item.clientName }}</td>
+                            <td>{{ item.status }}</td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div *ngIf="activeTab === 'invoices' && activeFunction === 'createInvoices'" class="body-section invoices">
+            <div class="section-header invoices">
+                <!-- <i class="fa-solid fa-file-invoice-dollar"></i> -->
+                <h2>Create Invoice</h2>
+                <!-- <p>Manage your invoices efficiently.</p>
+                <button class="main-btn">Create Invoice</button> -->
+            </div>
+        </div>
+
+
+
+
+
+
+        <div *ngIf="activeTab === 'clients'" class="sidebar clients">
+            <div class="tab-content clients">
+                <ul>
+                    <li class="active">View list of clients</li>
+                    <li>Create a client</li>
+                </ul>
+            </div>
+        </div>
+    </div>
