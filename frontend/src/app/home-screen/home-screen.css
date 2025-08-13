@@ -103,6 +103,7 @@
   border-right: 1px solid #ddd;
   padding: 20px;
   width: 220px;
+  height: auto;
 }
 
 .sidebar ul {
@@ -198,6 +199,33 @@
 .invoice-table tr:hover {
   background: #f9f9f9;
 }
+
+.action-buttons{
+  display: flex;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.btn-export_pdf{
+  background-color: white;
+  color: #ba1616;
+  border: 1px solid #ba1616;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-export_pdf:hover{
+  background-color: #f7e9e9;
+}
+
+.btn-export_xlxs{
+  background-color: white;
+  color: #0d6b2b;
+  border: 1px solid #0d6b2b;
+}
+
+.btn-export_xlxs:hover{
+  background-color: #def1e3;
+} 
 
 
 /* BODY */

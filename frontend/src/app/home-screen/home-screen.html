@@ -53,7 +53,7 @@
         </div>
 
         <!-- Invoice Section -->
-        <div *ngIf="activeTab === 'invoices' && activeFunction === 'readInvoices'" class="body-section invoices">
+        <div *ngIf="activeTab === 'invoices' && activeFunction === 'readInvoices'" class="body-section invoices" @fadeAnimation>
             <div class="section-header invoices">
                 <!-- <i class="fa-solid fa-file-invoice-dollar"></i> -->
                 <h2>Invoices List</h2>
@@ -88,8 +88,88 @@
                             <td>1</td>
                             <td>09874678</td>
                             <td>22-Jan-2025</td>
-                            <td>Thang Nguyen</td>
+                            <td>Nguyen Song Bao Thang</td>
                             <td>Bolt Baron</td>
+                            <td>Đã thanh toán</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>09874679</td>
+                            <td>23-Jan-2025</td>
+                            <td>Pham Thi Lan Anh</td>
+                            <td>Gear Galaxy</td>
+                            <td>Chưa thanh toán</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>09874680</td>
+                            <td>24-Jan-2025</td>
+                            <td>Minh Tran</td>
+                            <td>Nut & Bolt Co.</td>
+                            <td>Đã thanh toán</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>09874681</td>
+                            <td>25-Jan-2025</td>
+                            <td>Hoa Le</td>
+                            <td>Steel Supply</td>
+                            <td>Đang xử lý</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>09874682</td>
+                            <td>26-Jan-2025</td>
+                            <td>Nam Vo</td>
+                            <td>FastenRight</td>
+                            <td>Đã thanh toán</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>09874683</td>
+                            <td>27-Jan-2025</td>
+                            <td>Quyen Ho</td>
+                            <td>Metal Masters</td>
+                            <td>Chưa thanh toán</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>09874684</td>
+                            <td>28-Jan-2025</td>
+                            <td>Hieu Bui</td>
+                            <td>Iron Innovations</td>
+                            <td>Đã thanh toán</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>09874685</td>
+                            <td>29-Jan-2025</td>
+                            <td>Thu Nguyen</td>
+                            <td>SteelWorks</td>
+                            <td>Đang xử lý</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>09874686</td>
+                            <td>30-Jan-2025</td>
+                            <td>Khanh Do</td>
+                            <td>Bolt Bazaar</td>
+                            <td>Đã thanh toán</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>09874687</td>
+                            <td>31-Jan-2025</td>
+                            <td>Tuan Pham</td>
+                            <td>MetalMart</td>
+                            <td>Chưa thanh toán</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>09874688</td>
+                            <td>01-Feb-2025</td>
+                            <td>My Le</td>
+                            <td>Hardware Hub</td>
                             <td>Đã thanh toán</td>
                         </tr>
                         <!-- <tr *ngFor="let item of invoices; let i = index">
@@ -103,9 +183,19 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Actions -->
+            <div class="action-buttons">
+                <button class="btn btn-export_pdf">
+                    <i class="fa-solid fa-file-pdf"></i> Export Invoices List (.pdf)
+                </button>
+                <button class="btn btn-export_xlxs">
+                    <i class="fa-solid fa-file-excel"></i> Export Invoices List (.xlsx)
+                </button>
+            </div>
         </div>
 
-        <div *ngIf="activeTab === 'invoices' && activeFunction === 'createInvoices'" class="body-section invoices">
+        <div *ngIf="activeTab === 'invoices' && activeFunction === 'createInvoices'" class="body-section invoices" @fadeAnimation>
             <div class="section-header invoices">
                 <!-- <i class="fa-solid fa-file-invoice-dollar"></i> -->
                 <h2>Create Invoice</h2>
@@ -113,11 +203,6 @@
                 <button class="main-btn">Create Invoice</button> -->
             </div>
         </div>
-
-
-
-
-
 
         <div *ngIf="activeTab === 'clients'" class="sidebar clients">
             <div class="tab-content clients">

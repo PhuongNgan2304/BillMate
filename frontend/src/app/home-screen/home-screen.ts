@@ -16,6 +16,17 @@ import { trigger, style, animate, transition } from '@angular/animations';
         style({opacity: 0, transform: 'translateY(-10px)'}),
         animate('0.6s ease-out', style({opacity: 1, transform: 'translateY(0)'}))  
       ])
+    ]),
+
+    trigger('fadeAnimation', [
+      transition(':enter',[
+        style({opacity: 0}),
+        animate('300ms ease-in-out', style({opacity: 1})),
+      ]),
+      transition(':leave', [
+        style({opacity: 1}),
+        animate('300ms ease-in-out', style({opacity: 0}))
+      ])
     ])
   ]
 })
