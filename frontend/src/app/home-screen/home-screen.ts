@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { trigger, style, animate, transition } from '@angular/animations';
 
-
 @Component({
   selector: 'app-home-screen',
   imports: [CommonModule],
