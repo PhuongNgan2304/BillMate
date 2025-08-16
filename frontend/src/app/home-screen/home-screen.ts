@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { trigger, style, animate, transition } from '@angular/animations';
-
+import { InvoiceSidebar } from './sub-components/invoice-sidebar/invoice-sidebar';
 @Component({
   selector: 'app-home-screen',
-  imports: [CommonModule],
+  imports: [CommonModule, InvoiceSidebar],
   standalone: true,
   templateUrl: './home-screen.html',
   styleUrl: './home-screen.css',
-  animations:[
+    animations:[
     trigger('fadeSlideIn', [
       transition(':enter', [
         style({opacity: 0, transform: 'translateY(-10px)'}),
@@ -42,6 +42,8 @@ export class HomeScreen {
   setActiveFunction(func: string) {
     this.activeFunction = func;
   }
+
+
 
   constructor(private router: Router) {}
 

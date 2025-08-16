@@ -31,7 +31,7 @@
   } */
 }
 
-.btn{
+.btn {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -73,7 +73,7 @@
   border-bottom: 2px solid #e0e0e0;
 }
 
-.tab{
+.tab {
   padding: 10px 30px;
   font-size: 15px;
   font-weight: bold;
@@ -96,45 +96,11 @@
 }
 
 .content {
-  display: flex;    
+  display: flex;
   min-height: 80vh;
 }
 
-.sidebar {
-  background: #ebf4f6;
-  border-right: 1px solid #ddd;
-  padding: 20px;
-  width: fit-content;
-  height: auto;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  font-weight: bold;
-}
-
-.sidebar li {
-  padding: 12px;
-  cursor: pointer;
-  color: #0e3136; 
-  font-weight: bold;
-  border-radius: 6px;
-  border: solid 1px #2d767f; 
-  font-weight: 500;
-  transition: 0.3s;
-  margin-bottom: 10px;
-  width: 180px;
-}
-
-.sidebar li.active,
-.sidebar li:hover {
-  background: #2d767f;
-  color: white;
-  font-weight: bold;
-}
-
-.body-section{
+.body-section {
   padding: 20px;
 }
 
@@ -147,7 +113,7 @@
 }
 
 .section-header i {
-  font-size: 1.5rem; 
+  font-size: 1.5rem;
   color: #333;
 }
 
@@ -169,7 +135,7 @@
   margin-top: 20px;
 }
 
-.btn-filter{
+.btn-filter {
   background-color: white;
   color: #0c567a;
   border: 1px solid #0c567a;
@@ -203,32 +169,32 @@
   background: #f9f9f9;
 }
 
-.action-buttons{
+.action-buttons {
   display: flex;
   margin-top: 20px;
   gap: 20px;
 }
 
-.btn-export_pdf{
+.btn-export_pdf {
   background-color: white;
   color: #ba1616;
   border: 1px solid #ba1616;
   transition: 0.3s ease-in-out;
 }
 
-.btn-export_pdf:hover{
+.btn-export_pdf:hover {
   background-color: #f7e9e9;
 }
 
-.btn-export_xlxs{
+.btn-export_xlxs {
   background-color: white;
   color: #0d6b2b;
   border: 1px solid #0d6b2b;
 }
 
-.btn-export_xlxs:hover{
+.btn-export_xlxs:hover {
   background-color: #def1e3;
-} 
+}
 
 
 /* BODY */
@@ -276,6 +242,7 @@
     opacity: 0;
     transform: translateX(-80px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -291,8 +258,36 @@
     opacity: 0;
     transform: translateX(80px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+/* FORM CREATE INVOICE */
+.btn-remove-logo {
+  margin-left: 10px;
+  border: solid 1px rgb(253, 123, 123);
+  border-radius: 5px;
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-remove-logo:hover{
+  background-color: rgb(195, 57, 57);
+}
+
+.btn-remove-logo:hover i {
+  color: #fff !important;
+}
+
+.create-invoice-form {
+  max-height: 1000px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.create-invoice-form .form-label {
+  color: #777777;
 }

@@ -1,0 +1,16 @@
+<div class="sidebar invoices" [class.closed]="!isSidebarOpen">
+    <div style="position: absolute; left: 40px; margin-top: -10px;">
+        <button class="btn sidebar-toggle" (click)="toggleSidebar()">
+            <i class="fa-solid" [ngClass]="isSidebarOpen ? 'fa-solid fa-backward' : 'fa-solid fa-forward'"></i>
+        </button>
+    </div>
+
+    <div class="tab-content invoices" *ngIf="isSidebarOpen">
+        <ul>
+            <li class="function" [class.active]="activeFunction === 'readInvoices'"
+                (click)="setActiveFunction('readInvoices')">View list of invoices</li>
+            <li class="function" [class.active]="activeFunction === 'createInvoices'"
+                (click)="setActiveFunction('createInvoices')">Create an invoice</li>
+        </ul>
+    </div>
+</div>

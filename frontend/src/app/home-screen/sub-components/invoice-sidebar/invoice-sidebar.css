@@ -1,0 +1,63 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+.sidebar {
+  background: #ebf4f6;
+  border-right: 1px solid #ddd;
+  padding: 20px;
+  width: fit-content;
+  height: 100%;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  font-weight: bold;
+}
+
+.sidebar li {
+  padding: 12px;
+  cursor: pointer;
+  color: #0e3136; 
+  font-weight: bold;
+  border-radius: 6px;
+  border: solid 1px #2d767f; 
+  font-weight: 500;
+  transition: 0.3s;
+  margin-bottom: 10px;
+  width: 180px;
+}
+
+.sidebar li.active,
+.sidebar li:hover {
+  background: #2d767f;
+  color: white;
+  font-weight: bold;
+}
+
+.sidebar-toggle {
+  border: none;
+  border-radius: 20%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4); /* hiệu ứng nổi */
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Khi sidebar đóng */
+.sidebar.closed {
+  width: 80px; 
+  overflow: hidden;
+}
+
+/* Nội dung body dịch chuyển theo sidebar */
+.body-section {
+  margin-left: 240px;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar.closed ~ .body-section {
+  margin-left: 40px;
+}
+
+.tab-content{
+    margin-top: 40px;
+}
