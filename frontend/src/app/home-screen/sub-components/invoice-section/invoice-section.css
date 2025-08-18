@@ -190,6 +190,62 @@
   color: #777777;
 }
 
+.rate-qty {
+  display: flex!important;
+  justify-content: space-between;
+}
+
+.result{
+  display: flex!important;
+  justify-content: space-between;
+}
+
+.btn.primary {
+  background: #005de5;
+  color: #fff;
+  border-color: #005de5;
+}
+
+.btn.ghost {
+  background: #7e7d7d;
+  color: #fff;
+  border-color: #7e7d7d;
+}
+
+.btn.danger {
+  background: #fff1f1;
+  border-color: #ef4444;
+  color: #b91c1c;
+}
+
+.qty {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.item-row {
+  /* display: grid;
+  grid-template-columns: 2fr 110px 110px 120px 40px;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px; */
+}
+
+.flex-2 {
+  flex: 2;
+}
+
+.w-110 {
+  width: 110px;
+}
+
+.w-120 {
+  /* width: 120px; */
+  text-align: left;
+  font-weight: bold;
+}
+
 /* Invoice preview (A4-ish) */
 .preview-invoice {
   background: #fff;
@@ -229,11 +285,56 @@
   object-fit: contain;
 }
 
-.from-lines{
-  font-size: 12px ;
+.from-lines {
+  font-size: 12px;
 }
 
 .from-name {
   margin-top: 10px;
   font-weight: 700;
+}
+
+/* bill + due */
+.bill-amount {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 14px 0 8px;
+}
+
+.kicker {
+  font-size: 12px;
+  letter-spacing: .22em;
+  color: #9ca3af;
+  font-weight: 700;
+}
+
+.kicker.right {
+  text-align: right;
+}
+
+.bill-name,
+.bill-address,
+.bill-email {
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.bill-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.due {
+  text-align: right;
+}
+
+.due-issue-on {
+  font-size: 14px;
+}
+
+.due-money {
+  color: #ff6a00;
+  font-weight: 600;
+  font-size: 18px;
 }

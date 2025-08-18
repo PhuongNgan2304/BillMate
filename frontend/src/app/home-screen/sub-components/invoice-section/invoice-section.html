@@ -159,18 +159,20 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Client Email</label>
-                                <input type="email" class="form-control" placeholder="">
+                                <input type="email" [(ngModel)]="invoice.client.email" class="form-control"
+                                    placeholder="">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Client Address</label>
-                                <input type="text" class="form-control" placeholder="">
+                                <input type="text" [(ngModel)]="invoice.client.address" class="form-control"
+                                    placeholder="">
                             </div>
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label class="form-label">Company</label>
                                 <input type="text" class="form-control" placeholder="">
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="card-body">
@@ -218,9 +220,41 @@
                         </div>
 
                         <div class="card-body">
-                            <h5 class="fw-bold mb-4" style="color: rgb(0 93 229);">Item Description</h5>
+                            <h5 class="fw-bold mb-4" style="color: rgb(0 93 229);">Items Description</h5>
 
-                            <div class="mb-3">
+                            <div *ngFor="let it of invoice.items; let i = index" class="item-row">
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
+                                    <input type="text" [(ngModel)]="it.description" class="form-control" placeholder="">
+                                </div>
+
+                                <div class="rate-qty">
+                                    <div class="mb-3">
+                                        <label class="form-label">Unit Price ($)</label>
+                                        <input type="number" [(ngModel)]="it.unitPrice" class="form-control" placeholder="">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Quantity</label>
+                                        <input type="number" [(ngModel)]="it.qty" class="form-control" value="1" min="1">
+                                    </div>
+                                </div>
+
+                                <!-- <input class="control flex-2" placeholder="Description" [(ngModel)]="it.description" /> -->
+                                <!-- <input class="control w-110" type="number" placeholder="Rate" [(ngModel)]="it.rate" /> -->
+                                <!-- <div class="qty w-110">
+                                    <button class="btn" (click)="dec(i)">−</button>
+                                    <input class="control" type="number" min="1" [(ngModel)]="it.qty" />
+                                    <button class="btn" (click)="inc(i)">+</button>
+                                </div> -->
+                                <div class="result">
+                                    <div class="amount w-120">${{ (it.unitPrice * it.qty) | number:'1.2-2' }}</div>
+                                    <button class="btn ghost" title="Remove" (click)="removeItem(i)">- Remove Item</button>
+                                </div>
+                                <hr/>
+                            </div>
+                            <button class="btn primary mt" (click)="addItem()">+ Add Item</button>
+                            <!-- <div class="mb-3">
                                 <label class="form-label">Description</label>
                                 <input type="text" class="form-control" placeholder="">
                             </div>
@@ -252,8 +286,7 @@
 
                             <div class="mb-3">
                                 <button>New Item</button>
-                                <!-- <button>Remove Item</button> -->
-                            </div>
+                            </div> -->
                         </div>
 
                     </div>
@@ -280,13 +313,30 @@
                             </div>
                         </div>
                     </div>
-                      
+
+                    <hr />
+
+                    <!-- Bill to & Amount due -->
+                    <div class="bill-amount">
+                        <div class="billto">
+                            <div class="kicker">BILL TO</div>
+                            <div class="bill-name">{{ invoice.client.name || '—' }}</div>
+                            <div class="bill-address">{{ invoice.client.address }}</div>
+                            <div class="bill-email">{{ invoice.client.email }}</div>
+                        </div>
+                        <div class="due">
+                            <div class="kicker right">AMOUNT DUE</div>
+                            <div class="due-money">${{ total | number:'1.2-2' }}</div>
+                            <div class="due-issue-on right">Issued on: {{ invoice.issueDate | date:'MMM d, y' }}</div>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
             <button class="btn btn-export_pdf" (click)="exportToPDF()">
-                    <i class="fa-solid fa-file-pdf"></i> Export Preview (.pdf)
-                </button> 
+                <i class="fa-solid fa-file-pdf"></i> Export Preview (.pdf)
+            </button>
             <hr>
         </div>
         <div class="action-buttons">

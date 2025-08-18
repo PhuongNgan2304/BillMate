@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
-type Item = { description: string; rate: number; qty: number };
+type Item = { description: string; unitPrice: number; qty: number };
 @Component({
   selector: 'app-invoice-section',
   imports: [CommonModule, FormsModule, CurrencyPipe],
@@ -35,7 +35,7 @@ export class InvoiceSection {
       phone: '',
     },
     items: <Item[]>[
-      { description: 'Item 1', rate: 0, qty: 1 },
+      { description: '', unitPrice: 0, qty: 1 },
     ],
     payment: {
       bankName: '',
@@ -62,7 +62,7 @@ export class InvoiceSection {
 
   // --- Items ---
   addItem() {
-    this.invoice.items.push({ description: '', rate: 0, qty: 1 });
+    this.invoice.items.push({ description: '', unitPrice: 0, qty: 1 });
   }
   removeItem(i: number) {
     this.invoice.items.splice(i, 1);
@@ -76,13 +76,14 @@ export class InvoiceSection {
 
   // --- Totals ---
   get subtotal() {
-    return this.invoice.items.reduce((s, it) => s + it.rate * it.qty, 0);
+    return this.invoice.items.reduce((s, it) => s + it.unitPrice * it.qty, 0);
   }
   get tax() {
     return (this.subtotal * (this.invoice.taxPercent || 0)) / 100;
   }
   get total() {
-    return this.subtotal + this.tax;
+    //return this.subtotal + this.tax;
+    return 20;
   }
 
   // --- Export to PDF ---
