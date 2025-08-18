@@ -1,1 +1,296 @@
-<p>invoice-section works!</p>
+<div *ngIf="activeTab === 'invoices' && activeFunction === 'readInvoices'" class="body-section invoices">
+    <div class="section-header invoices">
+        <h2>Invoices List</h2>
+        <input type="text" placeholder="Search..." class="search-box" />
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+        <button class="btn btn-filter">
+            <i class="fa-solid fa-filter"></i>
+            Filter
+        </button>
+    </div>
+
+    <!-- Table -->
+    <div class="table-container">
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Invoice Number</th>
+                    <th>Invoice Date</th>
+                    <th>Prepared By</th>
+                    <th>Client Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>09874678</td>
+                    <td>22-Jan-2025</td>
+                    <td>Nguyen Song Bao Thang</td>
+                    <td>Bolt Baron</td>
+                    <td>Đã thanh toán</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>09874679</td>
+                    <td>23-Jan-2025</td>
+                    <td>Pham Thi Lan Anh</td>
+                    <td>Gear Galaxy</td>
+                    <td>Chưa thanh toán</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>09874680</td>
+                    <td>24-Jan-2025</td>
+                    <td>Minh Tran</td>
+                    <td>Nut & Bolt Co.</td>
+                    <td>Đã thanh toán</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>09874681</td>
+                    <td>25-Jan-2025</td>
+                    <td>Hoa Le</td>
+                    <td>Steel Supply</td>
+                    <td>Đang xử lý</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>09874682</td>
+                    <td>26-Jan-2025</td>
+                    <td>Nam Vo</td>
+                    <td>FastenRight</td>
+                    <td>Đã thanh toán</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>09874683</td>
+                    <td>27-Jan-2025</td>
+                    <td>Quyen Ho</td>
+                    <td>Metal Masters</td>
+                    <td>Chưa thanh toán</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>09874684</td>
+                    <td>28-Jan-2025</td>
+                    <td>Hieu Bui</td>
+                    <td>Iron Innovations</td>
+                    <td>Đã thanh toán</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>09874685</td>
+                    <td>29-Jan-2025</td>
+                    <td>Thu Nguyen</td>
+                    <td>SteelWorks</td>
+                    <td>Đang xử lý</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>09874686</td>
+                    <td>30-Jan-2025</td>
+                    <td>Khanh Do</td>
+                    <td>Bolt Bazaar</td>
+                    <td>Đã thanh toán</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>09874687</td>
+                    <td>31-Jan-2025</td>
+                    <td>Tuan Pham</td>
+                    <td>MetalMart</td>
+                    <td>Chưa thanh toán</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>09874688</td>
+                    <td>01-Feb-2025</td>
+                    <td>My Le</td>
+                    <td>Hardware Hub</td>
+                    <td>Đã thanh toán</td>
+                </tr>
+                <!-- <tr *ngFor="let item of invoices; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ item.invoiceNumber }}</td>
+                            <td>{{ item.invoiceDate }}</td>
+                            <td>{{ item.preparedBy }}</td>
+                            <td>{{ item.clientName }}</td>
+                            <td>{{ item.status }}</td>
+                        </tr> -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Actions -->
+    <div class="action-buttons">
+        <button class="btn btn-export_pdf">
+            <i class="fa-solid fa-file-pdf"></i> Export Invoices List (.pdf)
+        </button>
+        <button class="btn btn-export_xlxs">
+            <i class="fa-solid fa-file-excel"></i> Export Invoices List (.xlsx)
+        </button>
+    </div>
+</div>
+
+<div *ngIf="activeTab === 'invoices' && activeFunction === 'createInvoices'" class="body-section invoices">
+    <div class="section-header invoices">
+        <div class="container">
+
+            <div class="row">
+                <div class="col create-invoice-form" style="width: 1100px;">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body">
+                            <h5 class="fw-bold mb-4" style="color: rgb(0 93 229);">Billed To</h5>
+                            <div class="mb-3">
+                                <label class="form-label">Client Name</label>
+                                <input type="text" [(ngModel)]="invoice.client.name" class="form-control"
+                                    placeholder="">
+                                <!-- <select class="form-select">
+                                    <option selected disabled></option>
+                                    <option>Client A</option>
+                                    <option>Client B</option>
+                                </select> -->
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Client Email</label>
+                                <input type="email" class="form-control" placeholder="">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Client Address</label>
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Company</label>
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="fw-bold mb-4" style="color: rgb(0 93 229);">From</h5>
+
+                            <div class="mb-3">
+                                <label class="form-label">Your Logo</label>
+                                <div class="" style="display: flex;">
+                                    <input type="file" class="form-control" (change)="onLogoSelected($event)">
+                                    <button class="btn-remove-logo" (click)="removeLogo()">
+                                        <i class="fa-solid fa-trash"
+                                            style="color: rgb(195, 57, 57); font-size: medium; padding: 3px;"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Your Name</label>
+                                <input type="text" [(ngModel)]="invoice.from.name" class="form-control" placeholder="">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Your Company Name</label>
+                                <input type="text" [(ngModel)]="invoice.from.company" class="form-control"
+                                    placeholder="">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Your Email</label>
+                                <input type="email" [(ngModel)]="invoice.from.email" class="form-control"
+                                    placeholder="">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Your Address</label>
+                                <input type="text" [(ngModel)]="invoice.from.address" class="form-control"
+                                    placeholder=" ">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Your Phone Number</label>
+                                <input type="text" [(ngModel)]="invoice.from.phone" class="form-control"
+                                    placeholder=" ">
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="fw-bold mb-4" style="color: rgb(0 93 229);">Item Description</h5>
+
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Date</label>
+                                <input type="date" class="form-control" placeholder="">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Unit Price ($)</label>
+                                <input type="email" class="form-control" placeholder="">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Quantity</label>
+                                <input type="number" class="form-control" value="1" min="1">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Discount</label>
+                                <input type="email" class="form-control" placeholder="">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Amount ($)</label>
+                                <input type="email" class="form-control" placeholder="">
+                            </div>
+
+                            <div class="mb-3">
+                                <button>New Item</button>
+                                <!-- <button>Remove Item</button> -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col preview-invoice" id="invoicePreview">
+                    <div class="header">
+                        <div>
+                            <h3 class="big">INVOICE</h3>
+                            <div class="muted">#{{ invoice.number }}</div>
+                        </div>
+
+                        <div class="from">
+                            <div class="logo" *ngIf="logoUrl">
+                                <img [src]="logoUrl" alt="logo" />
+                            </div>
+
+                            <div class="from-lines">
+                                <div class="from-name">{{ invoice.from.name }}</div>
+                                <div class="from-company">{{ invoice.from.company }}</div>
+                                <div class="from-email">{{ invoice.from.email }}</div>
+                                <div class="from-address">{{ invoice.from.address }}</div>
+                                <div class="from-phone" *ngIf="invoice.from.phone">{{ invoice.from.phone }}</div>
+                            </div>
+                        </div>
+                    </div>
+                      
+                </div>
+
+            </div>
+            <button class="btn btn-export_pdf" (click)="exportToPDF()">
+                    <i class="fa-solid fa-file-pdf"></i> Export Preview (.pdf)
+                </button> 
+            <hr>
+        </div>
+        <div class="action-buttons">
+
+        </div>
+    </div>
+</div>
