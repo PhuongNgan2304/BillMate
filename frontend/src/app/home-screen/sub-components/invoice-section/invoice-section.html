@@ -300,12 +300,12 @@
                             </div>
                             <div class="mb-3" style="display: flex; justify-content: space-between;">
                                 <label class="form-label">Tax(%):</label>
-                                <input type="number" class="" style="width: 40%" value="" min="0" placeholder="">
-                                <input type="text" class="" value="1" min="1" placeholder="">
+                                <input type="number" [(ngModel)]="invoice.taxPercent" class="" style="width: 40%" value="" min="0" placeholder="">
+                                <input type="text" value="{{'+ ' + (tax | currency:'USD':'symbol':'1.2-2')}}" readonly>
                             </div>
                             <div class="mb-3" style="display: flex; justify-content: space-between;">
                                 <label class="form-label">Total Amount:</label>
-                                <input type="number" class="" placeholder="">
+                                <input type="text" value="{{ total | currency:'USD':'symbol':'1.2-2' }}" readonly>
                             </div>
                         </div>
                     </div>
