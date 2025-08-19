@@ -20,8 +20,8 @@ export class InvoiceSection {
 
   invoice = {
     number: 5,
-    issueDate: new Date().toISOString().slice(0, 10), // yyyy-MM-dd
-    taxPercent: 10,
+    issueDate: new Date().toISOString().slice(0, 10),
+    taxPercent: 0,
     client: {
       name: '',
       address: '',
@@ -82,8 +82,8 @@ export class InvoiceSection {
     return (this.subtotal * (this.invoice.taxPercent || 0)) / 100;
   }
   get total() {
-    //return this.subtotal + this.tax;
-    return 20;
+    return this.subtotal + this.tax;
+    //return 20;
   }
 
   // --- Export to PDF ---

@@ -230,13 +230,15 @@
 
                                 <div class="rate-qty">
                                     <div class="mb-3">
-                                        <label class="form-label">Unit Price ($)</label>
-                                        <input type="number" [(ngModel)]="it.unitPrice" class="form-control" placeholder="">
+                                        <label class="form-label">Unit Price($)</label>
+                                        <input type="number" [(ngModel)]="it.unitPrice" class="form-control"
+                                            placeholder="">
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Quantity</label>
-                                        <input type="number" [(ngModel)]="it.qty" class="form-control" value="1" min="1">
+                                        <input type="number" [(ngModel)]="it.qty" class="form-control" value="1"
+                                            min="1">
                                     </div>
                                 </div>
 
@@ -249,9 +251,10 @@
                                 </div> -->
                                 <div class="result">
                                     <div class="amount w-120">${{ (it.unitPrice * it.qty) | number:'1.2-2' }}</div>
-                                    <button class="btn ghost" title="Remove" (click)="removeItem(i)">- Remove Item</button>
+                                    <button class="btn ghost" title="Remove" (click)="removeItem(i)">- Remove
+                                        Item</button>
                                 </div>
-                                <hr/>
+                                <hr />
                             </div>
                             <button class="btn primary mt" (click)="addItem()">+ Add Item</button>
                             <!-- <div class="mb-3">
@@ -289,6 +292,22 @@
                             </div> -->
                         </div>
 
+                        <div class="card-body">
+                            <h5 class="fw-bold mb-4" style="color: rgb(0 93 229);">Total</h5>
+                            <div class="mb-3" style="display: flex; justify-content: space-between;">
+                                <label class="form-label">Subtotal:</label>
+                                <input type="text" value="{{ subtotal | currency:'USD':'symbol':'1.2-2' }}" readonly>
+                            </div>
+                            <div class="mb-3" style="display: flex; justify-content: space-between;">
+                                <label class="form-label">Tax(%):</label>
+                                <input type="number" class="" style="width: 40%" value="" min="0" placeholder="">
+                                <input type="text" class="" value="1" min="1" placeholder="">
+                            </div>
+                            <div class="mb-3" style="display: flex; justify-content: space-between;">
+                                <label class="form-label">Total Amount:</label>
+                                <input type="number" class="" placeholder="">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -330,6 +349,27 @@
                             <div class="due-issue-on right">Issued on: {{ invoice.issueDate | date:'MMM d, y' }}</div>
                         </div>
                     </div>
+
+
+                    <!-- Items -->
+                    <table class="items">
+                        <thead>
+                            <tr>
+                                <th class="left">DESCRIPTION</th>
+                                <th>UNIT PRICE</th>
+                                <th>QUANTITY</th>
+                                <th class="right" style="text-align: right !important;">AMOUNT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let it of invoice.items">
+                                <td class="left">{{ it.description || '—' }}</td>
+                                <td>${{ it.unitPrice | number:'1.2-2' }}</td>
+                                <td>{{ it.qty }}</td>
+                                <td class="right"><b>${{ (it.unitPrice * it.qty) | number:'1.2-2' }}</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
                 </div>
 
