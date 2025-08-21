@@ -58,6 +58,12 @@
   animation: zoomIn 1s ease-in-out forwards;
 }
 
+@media print {
+  .global-logo {
+    display: none !important;
+  }
+}
+
 /* .global-logo.center {
   top: 50%;
   left: 50%;

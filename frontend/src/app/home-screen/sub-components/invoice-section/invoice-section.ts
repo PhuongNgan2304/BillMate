@@ -90,10 +90,10 @@ export class InvoiceSection {
   exportToPDF() {
     const element = document.getElementById('invoicePreview');
     if (!element) return;
-    
-    html2canvas (element, {scale: 2}).then(canvas => {
+
+    html2canvas(element, { scale: 2 }).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
-      
+
       //Kích thước A4
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pageWidth = pdf.internal.pageSize.getWidth();
@@ -106,7 +106,7 @@ export class InvoiceSection {
       let position = 0;
 
       // Nếu ảnh cao hơn trang, chia thành nhiều trang
-      if (imgHeight > pageHeight){
+      if (imgHeight > pageHeight) {
         let heightLeft = imgHeight;
         while (heightLeft > 0) {
           pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
@@ -121,7 +121,11 @@ export class InvoiceSection {
       }
       pdf.save('invoice.pdf');
     })
-    
+
+  }
+
+  printPreview() {
+    window.print();
   }
   // invoice = {
   //   client: {

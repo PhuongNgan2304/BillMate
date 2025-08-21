@@ -368,3 +368,97 @@
 .items tbody td.right {
   text-align: right;
 }
+
+/* BUTTON Export Preview Text (.pdf) */
+/* Kích thước & margin A4 khi in */
+@page {
+  size: A4;
+  margin: 12mm;
+}
+
+/* Ẩn mọi thứ khi in, trừ phần preview */
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  app-header,
+  app-sidebar,
+  .navbar,
+  .footer {
+    display: none !important;
+  }
+
+  .global-logo {
+    display: none !important;
+  }
+
+  #invoicePreview {
+    margin: 0;
+    width: 100%;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  app-root,
+  body,
+  html {
+    background: white;
+  }
+
+  /* Chỉ in phần preview */
+  body * {
+    visibility: hidden;
+  }
+
+  #invoicePreview,
+  #invoicePreview * {
+    visibility: visible;
+  }
+
+  #invoicePreview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 210mm;
+    min-height: 297mm;
+    /* Tránh vỡ trang ở chỗ không mong muốn */
+    page-break-inside: avoid;
+  }
+
+  /* Nếu nội dung dài nhiều trang, cho phép ngắt trang ở các khối hợp lý */
+  .section,
+  .card,
+  table,
+  tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+/* Totals */
+.totals {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  margin-top: 10px;
+}
+
+.result-subtotal, .result-tax {
+  padding: 6px 0;
+}
+
+.totals-table .divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 10px 0;
+}
+
+.grand {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+}
