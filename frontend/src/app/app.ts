@@ -2,6 +2,8 @@ import { Component, signal } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { SplashScreenComponent } from './splash-screen/splash-screen';
 import { HomeScreen } from './home-screen/home-screen';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { SplashService } from './splash.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,8 @@ import { HomeScreen } from './home-screen/home-screen';
   styleUrl: './app.css'
 })
 export class App {
-  logoSrc = 'assets/logo-invomate2.png';
+  logoSrc = 'assets/logo-invomate2-removebg.png';
+  showSplash = true;
   logoInCorner = false;
   animateLogo = true;
 
@@ -37,4 +40,6 @@ export class App {
       }, 2500);
     }
   }
+
 }
+

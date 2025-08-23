@@ -80,6 +80,17 @@
   transition: 0.3s ease-in-out;
 }
 
+.btn-cancel-info{
+  background-color: white;
+  color: rgb(54, 54, 54);
+  border: 1px solid rgb(120, 119, 119);
+  transition: 0.3s ease-in-out;
+}
+
+.btn-cancel-info:hover{
+  background-color: #dadada;
+}
+
 .btn-export_pdf:hover {
   background-color: #f7e9e9;
 }
@@ -446,7 +457,8 @@
   margin-top: 10px;
 }
 
-.result-subtotal, .result-tax {
+.result-subtotal,
+.result-tax {
   padding: 6px 0;
 }
 
@@ -461,4 +473,18 @@
   justify-content: space-between;
   align-items: center;
   font-size: 18px;
+}
+
+/* Payment box */
+.paybox {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 40px;
+}
+
+.paycols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
 }

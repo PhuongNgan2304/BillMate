@@ -142,7 +142,7 @@
         <div class="container">
 
             <div class="row">
-                <div class="col create-invoice-form" style="width: 1100px;">
+                <div class="col create-invoice-form" style="width: 1200px;">
                     <div class="card shadow-sm border-0">
                         <div class="card-body">
                             <h5 class="fw-bold mb-4" style="color: rgb(0 93 229);">Billed To</h5>
@@ -230,6 +230,11 @@
 
                                 <div class="rate-qty">
                                     <div class="mb-3">
+                                        <label class="form-label">Date</label>
+                                        <input type="date" [(ngModel)]="it.date" class="form-control">
+                                    </div>
+
+                                    <div class="mb-3">
                                         <label class="form-label">Unit Price($)</label>
                                         <input type="number" [(ngModel)]="it.unitPrice" class="form-control"
                                             placeholder="">
@@ -240,6 +245,7 @@
                                         <input type="number" [(ngModel)]="it.qty" class="form-control" value="1"
                                             min="1">
                                     </div>
+
                                 </div>
 
                                 <!-- <input class="control flex-2" placeholder="Description" [(ngModel)]="it.description" /> -->
@@ -290,6 +296,50 @@
                             <div class="mb-3">
                                 <button>New Item</button>
                             </div> -->
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="fw-bold mb-4" style="color: rgb(0 93 229);">Bank Payment Info</h5>
+
+                            <div class="mb-3">
+                                <label class="form-label">Bank Name</label>
+                                <input type="email" [(ngModel)]="invoice.payment.bankName" class="form-control"
+                                    placeholder="">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Account No</label>
+                                <input type="email" [(ngModel)]="invoice.payment.accountNo" class="form-control"
+                                    placeholder="">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Swift Code</label>
+                                <input type="email" [(ngModel)]="invoice.payment.swiftCode" class="form-control"
+                                    placeholder="">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">IFSC Code</label>
+                                <input type="email" [(ngModel)]="invoice.payment.ifscCode" class="form-control"
+                                    placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="fw-bold mb-4" style="color: rgb(0 93 229);">Paypal Info</h5>
+
+                            <div class="mb-3">
+                                <label class="form-label">Paypal Email</label>
+                                <input type="email" [(ngModel)]="invoice.payment.paypal" class="form-control"
+                                    placeholder="">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Paypal Link</label>
+                                <input type="email" [(ngModel)]="invoice.payment.paypalLink" class="form-control"
+                                    placeholder="">
+                            </div>
                         </div>
 
                         <div class="card-body">
@@ -356,7 +406,9 @@
                     <table class="items">
                         <thead>
                             <tr>
-                                <th class="left">DESCRIPTION</th>
+                                <th class="left" style="width: 200px; word-wrap: break-word; white-space: normal;">
+                                    DESCRIPTION</th>
+                                <th style="width: 100px;">DATE</th>
                                 <th>UNIT PRICE</th>
                                 <th>QUANTITY</th>
                                 <th class="right" style="text-align: right !important;">AMOUNT</th>
@@ -364,7 +416,10 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let it of invoice.items">
-                                <td class="left">{{ it.description || '—' }}</td>
+                                <td class="left" style="width: 200px; word-wrap: break-word; white-space: normal;">{{
+                                    it.description || '—' }}</td>
+                                <td class="left" style="width: 100px;">{{ it.date ? (it.date | date:'dd-MMM-yyyy') : '—'
+                                    }}</td>
                                 <td>${{ it.unitPrice | number:'1.2-2' }}</td>
                                 <td>{{ it.qty }}</td>
                                 <td class="right"><b>${{ (it.unitPrice * it.qty) | number:'1.2-2' }}</b></td>
@@ -376,35 +431,56 @@
                         <div></div>
                         <div class="totals-table">
                             <div class="result-subtotal" style="display: flex; justify-content: space-between;">
-                                <div>Subtotal :</div>
-                                <div>${{ subtotal | number:'1.2-2' }}</div>
+                                <div style="font-size: 14px;">Subtotal :</div>
+                                <div style="font-size: 14px;">${{ subtotal | number:'1.2-2' }}</div>
                             </div>
                             <div class="result-tax" style="display: flex; justify-content: space-between;">
-                                <div>TAX({{ invoice.taxPercent }}%) :</div>
-                                <div>${{ tax | number:'1.2-2' }}</div>
+                                <div style="font-size: 14px;">TAX({{ invoice.taxPercent }}%) :</div>
+                                <div style="font-size: 14px;">${{ tax | number:'1.2-2' }}</div>
                             </div>
                             <div class="divider"></div>
                             <div class="grand">
-                                <div>Total Amount:</div>
-                                <div class="right"><b>${{ total | number:'1.2-2' }}</b></div>
+                                <div style="font-size: 14px; font-weight: bold;">Total Amount:</div>
+                                <div class="right" style="font-size: 14px;"><b>${{ total | number:'1.2-2' }}</b></div>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Payment details -->
+                    <div class="paybox">
+                        <div class="kicker">PAYMENT DETAILS</div>
+                        <div class="paycols">
+                            <div style="font-size: 12px;">
+                                <div><b>Bank name:</b> {{ invoice.payment.bankName }}</div>
+                                <div><b>Account No:</b> {{ invoice.payment.accountNo }}</div>
+                                <div><b>Swift Code:</b> {{ invoice.payment.swiftCode }}</div>
+                                <div><b>IFSC Code:</b> {{ invoice.payment.ifscCode }}</div>
+                            </div>
+                            <div style="font-size: 12px;">
+                                <div><b>Paypal:</b> {{ invoice.payment.paypal }}</div>
+                                <div><b>Link:</b> {{ invoice.payment.paypalLink }}</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
-            <button class="btn btn-export_pdf" (click)="exportToPDF()">
-                <i class="fa-solid fa-file-pdf"></i> Export Preview (.pdf)
-            </button>
-
-            <button class="btn btn-export_pdf no-print" (click)="printPreview()">
-                <i class="fa-solid fa-file-pdf"></i> Export Preview Text (.pdf)
-            </button>
-            <hr>
-        </div>
-        <div class="action-buttons">
 
         </div>
+        <hr>
+    </div>
+
+    <div class="action-buttons">
+        <button class="btn btn-export_pdf" (click)="exportToPDF()">
+            <i class="fa-solid fa-file-pdf"></i> Export Preview Image (.pdf)
+        </button>
+
+        <button class="btn btn-export_pdf no-print" (click)="printPreview()">
+            <i class="fa-solid fa-file-pdf"></i> Export Preview Text (.pdf)
+        </button>
+
+        <button class="btn btn-cancel-info" (click)="clearLocalStorage()">
+            <i class="fa-solid fa-ban"></i> Cancel Info
+        </button>
     </div>
 </div>

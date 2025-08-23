@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
-type Item = { description: string; unitPrice: number; qty: number };
+type Item = { description: string; unitPrice: number; qty: number, date?: string | null };
 @Component({
   selector: 'app-invoice-section',
   imports: [CommonModule, FormsModule, CurrencyPipe],
@@ -15,6 +15,8 @@ type Item = { description: string; unitPrice: number; qty: number };
 export class InvoiceSection {
   @Input() activeTab!: string;
   @Input() activeFunction!: string;
+
+  private localStorageKey = 'invoice_data';
 
   logoUrl: string | null = null;
 
@@ -35,7 +37,7 @@ export class InvoiceSection {
       phone: '',
     },
     items: <Item[]>[
-      { description: '', unitPrice: 0, qty: 1 },
+      { description: '', unitPrice: 0, qty: 1, date: null },
     ],
     payment: {
       bankName: '',
@@ -43,9 +45,50 @@ export class InvoiceSection {
       swiftCode: '',
       ifscCode: '',
       paypal: '',
-      link: '',
+      paypalLink: '',
     },
   };
+
+  // ======== LIFECYCLE ========  
+  ngOnInit() {
+    const savedData = localStorage.getItem(this.localStorageKey);
+    if (savedData) {
+      const parsedData = JSON.parse(savedData);
+      this.invoice = parsedData.invoice || this.invoice;
+      this.logoUrl = parsedData.logoUrl || null;
+    }
+  }
+
+  ngDoCheck() {
+    this.saveToLocalStorage();
+  }
+
+  // ======== SAVE / CLEAR ========
+  saveToLocalStorage() {
+    const data = {
+      invoice: this.invoice,
+      logoUrl: this.logoUrl,
+    };
+    localStorage.setItem(this.localStorageKey, JSON.stringify(data));
+  }
+
+  clearLocalStorage() {
+    localStorage.removeItem(this.localStorageKey);
+    this.resetForm();
+  }
+
+  resetForm() {
+    this.invoice = {
+      number: 5,
+      issueDate: new Date().toISOString().slice(0, 10),
+      taxPercent: 0,
+      client: { name: '', address: '', email: '' },
+      from: { name: '', company: '', address: '', email: '', phone: '' },
+      items: [{ description: '', unitPrice: 0, qty: 1, date: null }],
+      payment: { bankName: '', accountNo: '', swiftCode: '', ifscCode: '', paypal: '', paypalLink: '' }
+    };
+    this.logoUrl = null;
+  }
 
   // --- File (logo) ---
   onLogoSelected(e: Event) {
@@ -53,25 +96,33 @@ export class InvoiceSection {
     const file = input.files?.[0];
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = () => (this.logoUrl = reader.result as string);
+    reader.onload = () => {
+      this.logoUrl = reader.result as string;
+      this.saveToLocalStorage();
+    };
     reader.readAsDataURL(file);
   }
   removeLogo() {
     this.logoUrl = null;
+    this.saveToLocalStorage();
   }
 
   // --- Items ---
   addItem() {
-    this.invoice.items.push({ description: '', unitPrice: 0, qty: 1 });
+    this.invoice.items.push({ description: '', unitPrice: 0, qty: 1, date: null });
+    this.saveToLocalStorage();
   }
   removeItem(i: number) {
     this.invoice.items.splice(i, 1);
+    this.saveToLocalStorage();
   }
   inc(i: number) {
     this.invoice.items[i].qty++;
+    this.saveToLocalStorage();
   }
   dec(i: number) {
     if (this.invoice.items[i].qty > 1) this.invoice.items[i].qty--;
+    this.saveToLocalStorage();
   }
 
   // --- Totals ---
