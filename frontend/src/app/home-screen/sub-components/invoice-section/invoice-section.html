@@ -145,6 +145,12 @@
                 <div class="col create-invoice-form" style="width: 1200px;">
                     <div class="card shadow-sm border-0">
                         <div class="card-body">
+                            <h5 class="fw-bold mb-4" style="color: rgb(0 93 229);">Invoice No.</h5>
+                            <label class="form-label">Invoice Number</label>
+                            <input type="text" [(ngModel)]="invoice.number" class="form-control" placeholder="">
+                        </div>
+
+                        <div class="card-body">
                             <h5 class="fw-bold mb-4" style="color: rgb(0 93 229);">Billed To</h5>
                             <div class="mb-3">
                                 <label class="form-label">Client Name</label>

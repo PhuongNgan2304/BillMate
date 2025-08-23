@@ -21,7 +21,7 @@ export class InvoiceSection {
   logoUrl: string | null = null;
 
   invoice = {
-    number: 5,
+    number: 0,
     issueDate: new Date().toISOString().slice(0, 10),
     taxPercent: 0,
     client: {
@@ -79,7 +79,7 @@ export class InvoiceSection {
 
   resetForm() {
     this.invoice = {
-      number: 5,
+      number: 0,
       issueDate: new Date().toISOString().slice(0, 10),
       taxPercent: 0,
       client: { name: '', address: '', email: '' },
