@@ -24,6 +24,7 @@ export class InvoiceSection {
     number: 0,
     issueDate: new Date().toISOString().slice(0, 10),
     taxPercent: 0,
+    discount: 0,
     client: {
       name: '',
       address: '',
@@ -85,6 +86,7 @@ export class InvoiceSection {
       number: 0,
       issueDate: new Date().toISOString().slice(0, 10),
       taxPercent: 0,
+      discount: 0,
       client: { name: '', address: '', email: '', poNumber: '' },
       from: { name: '', company: '', address: '', email: '', phone: '' },
       items: [{ description: '', unitPrice: 0, qty: 1, date: null }],
@@ -132,11 +134,17 @@ export class InvoiceSection {
   get subtotal() {
     return this.invoice.items.reduce((s, it) => s + it.unitPrice * it.qty, 0);
   }
+  get discount() {
+    return (this.subtotal * (this.invoice.discount || 0)) / 100;
+  }
+  get subTotalLessDiscount() {
+    return this.subtotal - this.discount;
+  }
   get tax() {
-    return (this.subtotal * (this.invoice.taxPercent || 0)) / 100;
+    return (this.subTotalLessDiscount * (this.invoice.taxPercent || 0)) / 100;
   }
   get total() {
-    return this.subtotal + this.tax;
+    return this.subTotalLessDiscount + this.tax;
     //return 20;
   }
 
@@ -157,31 +165,32 @@ export class InvoiceSection {
       const imgWidth = pageWidth;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-      //let position = 0;
+      let position = 0;
 
-      // Nếu ảnh cao hơn trang, chia thành nhiều trang
-      // if (imgHeight > pageHeight) {
-      //   let heightLeft = imgHeight;
-      //   while (heightLeft > 0) {
-      //     pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-      //     heightLeft -= pageHeight;
-      //     if (heightLeft > 0) {
-      //       pdf.addPage();
-      //       position = - (imgHeight - heightLeft);
-      //     }
-      //   }
-      // } else {
-      //   pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      //Nếu ảnh cao hơn trang, chia thành nhiều trang
+      if (imgHeight > pageHeight) {
+        let heightLeft = imgHeight;
+        while (heightLeft > 0) {
+          pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+          if (heightLeft > 0) {
+            pdf.addPage();
+            position = - (imgHeight - heightLeft);
+          }
+        }
+      } else {
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      }
+      pdf.save('invoice.pdf');
+
+      // let finalImgHeight = imgHeight;
+
+      // if(imgHeight > pageHeight) {
+      //   finalImgHeight = pageHeight;
       // }
 
-      let finalImgHeight = imgHeight;
-
-      if(imgHeight > pageHeight) {
-        finalImgHeight = pageHeight;
-      }
-
-      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, finalImgHeight);
-      pdf.save('invoice.pdf');
+      // pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, finalImgHeight);
+      // pdf.save('invoice.pdf');
     })
 
   }

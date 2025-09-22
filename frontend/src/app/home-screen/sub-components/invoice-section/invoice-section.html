@@ -142,7 +142,7 @@
         <div class="container">
 
             <div class="row">
-                <div class="col create-invoice-form" style="width: 1200px;">
+                <div class="col create-invoice-form" style="width: 1500px;">
                     <div class="card shadow-sm border-0">
                         <div class="card-body">
                             <h5 class="fw-bold mb-4" style="color: rgb(0 93 229);">Invoice No.</h5>
@@ -378,8 +378,18 @@
                                 <input type="text" value="{{ subtotal | currency:'USD':'symbol':'1.2-2' }}" readonly>
                             </div>
                             <div class="mb-3" style="display: flex; justify-content: space-between;">
+                                <label class="form-label">Discount(%):</label>
+                                <input type="number" [(ngModel)]="invoice.discount" class="" style="width: 40%;"
+                                    value="" min="0" placeholder="">
+                                <input type="text" value="{{'- ' + (discount | currency:'USD':'symbol':'1.2-2')}}" readonly>
+                            </div>
+                            <div class="mb-3" style="display: flex; justify-content: space-between;">
+                                <label class="form-label">Subtotal Less Discount:</label>
+                                <input type="text" value="{{ subTotalLessDiscount | currency:'USD':'symbol':'1.2-2' }}" readonly>
+                            </div>
+                            <div class="mb-3" style="display: flex; justify-content: space-between;">
                                 <label class="form-label">Tax(%):</label>
-                                <input type="number" [(ngModel)]="invoice.taxPercent" class="" style="width: 40%"
+                                <input type="number" [(ngModel)]="invoice.taxPercent" class="" style="width: 40%; margin-left: 35   px"
                                     value="" min="0" placeholder="">
                                 <input type="text" value="{{'+ ' + (tax | currency:'USD':'symbol':'1.2-2')}}" readonly>
                             </div>
@@ -410,7 +420,7 @@
                         </div>
 
                         <div class="title">
-                            <h3 class="big">Invoice/ Debit Notes</h3>
+                            <h3 class="big" style="color: black ">Invoice/ Debit Notes</h3>
                             <div class="muted" style="font-weight: bold; color:#1c2e56; font-size: 14px;">{{ invoice.issueDate | date:'dd-MMM-yyyy' }}</div>
                             <hr style="border:none; border-top:1px solid #313131; width:50%; margin:8px auto;" />
                             <div class="muted" style="font-weight: bold; color:#1c2e56; font-size: 14px;">#{{ invoice.number }}</div>
@@ -474,11 +484,11 @@
                             </div>
                             <div class="result-subtotal" style="display: flex; justify-content: space-between;">
                                 <div style="font-size: 12px;">DISCOUNT :</div>
-                                <div style="font-size: 12px;">$</div>
+                                <div style="font-size: 12px;">${{ discount | number:'1.2-2' }}</div>
                             </div>
                             <div class="result-subtotal" style="display: flex; justify-content: space-between;">
                                 <div style="font-size: 12px;">SUBTOTAL LESS DISCOUNT :</div>
-                                <div style="font-size: 12px;">$</div>
+                                <div style="font-size: 12px;">${{ subTotalLessDiscount | number:'1.2-2' }}</div>
                             </div>
                             <div class="result-tax" style="display: flex; justify-content: space-between;">
                                 <div style="font-size: 12px;">TAX({{ invoice.taxPercent }}%) :</div>
