@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
-type Item = { description: string; unitPrice: number; qty: number, date?: string | null };
+type Item = { description: string; unitPrice: number; qty: number, date?: string | null, remarks?: string | null };
 @Component({
   selector: 'app-invoice-section',
   imports: [CommonModule, FormsModule, CurrencyPipe],
@@ -28,6 +28,7 @@ export class InvoiceSection {
       name: '',
       address: '',
       email: '',
+      poNumber: '',
     },
     from: {
       name: '',
@@ -37,13 +38,15 @@ export class InvoiceSection {
       phone: '',
     },
     items: <Item[]>[
-      { description: '', unitPrice: 0, qty: 1, date: null },
+      { description: '', unitPrice: 0, qty: 1, date: null, remarks: '' },
     ],
     payment: {
       bankName: '',
+      accountName: '',
+      bankCountry: '',
       accountNo: '',
       swiftCode: '',
-      ifscCode: '',
+      citadCode: '',
       paypal: '',
       paypalLink: '',
     },
@@ -82,10 +85,10 @@ export class InvoiceSection {
       number: 0,
       issueDate: new Date().toISOString().slice(0, 10),
       taxPercent: 0,
-      client: { name: '', address: '', email: '' },
+      client: { name: '', address: '', email: '', poNumber: '' },
       from: { name: '', company: '', address: '', email: '', phone: '' },
       items: [{ description: '', unitPrice: 0, qty: 1, date: null }],
-      payment: { bankName: '', accountNo: '', swiftCode: '', ifscCode: '', paypal: '', paypalLink: '' }
+      payment: { bankName: '', accountName:'', bankCountry: '', accountNo: '', swiftCode: '', citadCode: '', paypal: '', paypalLink: '' }
     };
     this.logoUrl = null;
   }
@@ -154,22 +157,30 @@ export class InvoiceSection {
       const imgWidth = pageWidth;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-      let position = 0;
+      //let position = 0;
 
       // Nếu ảnh cao hơn trang, chia thành nhiều trang
-      if (imgHeight > pageHeight) {
-        let heightLeft = imgHeight;
-        while (heightLeft > 0) {
-          pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-          heightLeft -= pageHeight;
-          if (heightLeft > 0) {
-            pdf.addPage();
-            position = - (imgHeight - heightLeft);
-          }
-        }
-      } else {
-        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      // if (imgHeight > pageHeight) {
+      //   let heightLeft = imgHeight;
+      //   while (heightLeft > 0) {
+      //     pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      //     heightLeft -= pageHeight;
+      //     if (heightLeft > 0) {
+      //       pdf.addPage();
+      //       position = - (imgHeight - heightLeft);
+      //     }
+      //   }
+      // } else {
+      //   pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      // }
+
+      let finalImgHeight = imgHeight;
+
+      if(imgHeight > pageHeight) {
+        finalImgHeight = pageHeight;
       }
+
+      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, finalImgHeight);
       pdf.save('invoice.pdf');
     })
 

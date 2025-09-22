@@ -163,15 +163,21 @@
                                 </select> -->
                             </div>
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label class="form-label">Client Email</label>
                                 <input type="email" [(ngModel)]="invoice.client.email" class="form-control"
                                     placeholder="">
-                            </div>
+                            </div> -->
 
                             <div class="mb-3">
                                 <label class="form-label">Client Address</label>
                                 <input type="text" [(ngModel)]="invoice.client.address" class="form-control"
+                                    placeholder="">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Client PO Number</label>
+                                <input type="text" [(ngModel)]="invoice.client.poNumber" class="form-control"
                                     placeholder="">
                             </div>
 
@@ -195,10 +201,10 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label class="form-label">Your Name</label>
                                 <input type="text" [(ngModel)]="invoice.from.name" class="form-control" placeholder="">
-                            </div>
+                            </div> -->
 
                             <div class="mb-3">
                                 <label class="form-label">Your Company Name</label>
@@ -206,11 +212,11 @@
                                     placeholder="">
                             </div>
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label class="form-label">Your Email</label>
                                 <input type="email" [(ngModel)]="invoice.from.email" class="form-control"
                                     placeholder="">
-                            </div>
+                            </div> -->
 
                             <div class="mb-3">
                                 <label class="form-label">Your Address</label>
@@ -252,6 +258,11 @@
                                             min="1">
                                     </div>
 
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Remarks</label>
+                                    <input type="text" [(ngModel)]="it.remarks" class="form-control" placeholder="">
                                 </div>
 
                                 <!-- <input class="control flex-2" placeholder="Description" [(ngModel)]="it.description" /> -->
@@ -309,25 +320,37 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Bank Name</label>
-                                <input type="email" [(ngModel)]="invoice.payment.bankName" class="form-control"
+                                <input type="text" [(ngModel)]="invoice.payment.bankName" class="form-control"
+                                    placeholder="">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Account Name</label>
+                                <input type="text" [(ngModel)]="invoice.payment.accountName" class="form-control"
+                                    placeholder="">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Bank Country</label>
+                                <input type="text" [(ngModel)]="invoice.payment.bankCountry" class="form-control"
                                     placeholder="">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Account No</label>
-                                <input type="email" [(ngModel)]="invoice.payment.accountNo" class="form-control"
+                                <input type="text" [(ngModel)]="invoice.payment.accountNo" class="form-control"
                                     placeholder="">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Swift Code</label>
-                                <input type="email" [(ngModel)]="invoice.payment.swiftCode" class="form-control"
+                                <input type="text" [(ngModel)]="invoice.payment.swiftCode" class="form-control"
                                     placeholder="">
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">IFSC Code</label>
-                                <input type="email" [(ngModel)]="invoice.payment.ifscCode" class="form-control"
+                                <label class="form-label">Citad Code</label>
+                                <input type="text" [(ngModel)]="invoice.payment.citadCode" class="form-control"
                                     placeholder="">
                             </div>
                         </div>
@@ -369,66 +392,75 @@
                 </div>
 
                 <div class="col preview-invoice" id="invoicePreview">
-                    <div class="header">
-                        <div>
-                            <h3 class="big">INVOICE</h3>
-                            <div class="muted">#{{ invoice.number }}</div>
-                        </div>
+                    <div class="header-line" style="width: 100%; height: 20px; background-color: #b1dba3;"></div>
 
+                    <div class="header">
                         <div class="from">
                             <div class="logo" *ngIf="logoUrl">
                                 <img [src]="logoUrl" alt="logo" />
                             </div>
 
                             <div class="from-lines">
-                                <div class="from-name">{{ invoice.from.name }}</div>
-                                <div class="from-company">{{ invoice.from.company }}</div>
-                                <div class="from-email">{{ invoice.from.email }}</div>
+                                <!-- <div class="from-name">{{ invoice.from.name }}</div> -->
+                                <div class="from-company" style="font-weight: bold;">{{ invoice.from.company }}</div>
+                                <!-- <div class="from-email">{{ invoice.from.email }}</div> -->
                                 <div class="from-address">{{ invoice.from.address }}</div>
-                                <div class="from-phone" *ngIf="invoice.from.phone">{{ invoice.from.phone }}</div>
+                                <!-- <div class="from-phone" *ngIf="invoice.from.phone">{{ invoice.from.phone }}</div> -->
                             </div>
+                        </div>
+
+                        <div class="title">
+                            <h3 class="big">Invoice/ Debit Notes</h3>
+                            <div class="muted" style="font-weight: bold; color:#1c2e56; font-size: 14px;">{{ invoice.issueDate | date:'dd-MMM-yyyy' }}</div>
+                            <hr style="border:none; border-top:1px solid #313131; width:50%; margin:8px auto;" />
+                            <div class="muted" style="font-weight: bold; color:#1c2e56; font-size: 14px;">#{{ invoice.number }}</div>
+                            <hr style="border:none; border-top:1px solid #313131; width:50%; margin:8px auto;" />
                         </div>
                     </div>
 
-                    <hr />
+                    <!-- <hr /> -->
 
                     <!-- Bill to & Amount due -->
                     <div class="bill-amount">
                         <div class="billto">
-                            <div class="kicker">BILL TO</div>
+                            <div class="kicker" style="color:#1c2e56">BILL TO</div>
+                            <hr style="border:none; border-top:1px solid white; width:50%; margin:8px auto;"/>
+
                             <div class="bill-name">{{ invoice.client.name || '—' }}</div>
                             <div class="bill-address">{{ invoice.client.address }}</div>
-                            <div class="bill-email">{{ invoice.client.email }}</div>
+                            <div class="client-po">Client PO Number: <span>{{invoice.client.poNumber}}</span> </div>
+                            <!-- <div class="bill-email">{{ invoice.client.email }}</div> -->
                         </div>
-                        <div class="due">
+                        <!-- <div class="due">
                             <div class="kicker right">AMOUNT DUE</div>
                             <div class="due-money">${{ total | number:'1.2-2' }}</div>
                             <div class="due-issue-on right">Issued on: {{ invoice.issueDate | date:'MMM d, y' }}</div>
-                        </div>
+                        </div> -->
                     </div>
 
 
                     <!-- Items -->
-                    <table class="items">
+                    <table class="items" style="width:100%; border-collapse: collapse; font-size: 14px;">
                         <thead>
-                            <tr>
-                                <th class="left" style="width: 200px; word-wrap: break-word; white-space: normal;">
-                                    DESCRIPTION</th>
-                                <th style="width: 100px;">DATE</th>
-                                <th>UNIT PRICE</th>
-                                <th>QUANTITY</th>
-                                <th class="right" style="text-align: right !important;">AMOUNT</th>
+                            <tr style="background-color:#b1dba3;">
+                                <th class="center" style="border:1px solid #000; padding:6px; width: 200px; word-wrap: break-word; white-space: normal;">Description</th>
+                                <th style="border:1px solid #000; padding:6px; width: 100px;">Date</th>
+                                <th style="border:1px solid #000; padding:6px;">Unit price</th>
+                                <th style="border:1px solid #000; padding:6px;">Quantity</th>
+                                <th class="right" style="border:1px solid #000; padding:6px; text-align: center !important;">Sub-total</th>
+                                <th class="center" style="border:1px solid #000; padding:6px; text-align: center !important;">Remarks</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let it of invoice.items">
-                                <td class="left" style="width: 200px; word-wrap: break-word; white-space: normal;">{{
+                            <tr *ngFor="let it of invoice.items; let i = index">
+                                <td class="left" style="border:1px solid #000; padding:6px; width: 200px; word-wrap: break-word; white-space: normal;">{{i+1}}. {{
                                     it.description || '—' }}</td>
-                                <td class="left" style="width: 100px;">{{ it.date ? (it.date | date:'dd-MMM-yyyy') : '—'
+                                <td class="center" style="border:1px solid #000; padding:6px; width: 100px; text-align: center;">{{ it.date ? (it.date | date:'dd-MMM-yyyy') : '—'
                                     }}</td>
-                                <td>${{ it.unitPrice | number:'1.2-2' }}</td>
-                                <td>{{ it.qty }}</td>
-                                <td class="right"><b>${{ (it.unitPrice * it.qty) | number:'1.2-2' }}</b></td>
+                                <td class="center" style="border:1px solid #000; padding:6px; text-align: center!important;">${{ it.unitPrice | number:'1.2-2' }}</td>
+                                <td class="center" style="border:1px solid #000; padding:6px; text-align: center!important;">{{ it.qty }}</td>
+                                <td class="right" style="border:1px solid #000; padding:6px; text-align: center;"><b>${{ (it.unitPrice * it.qty) | number:'1.2-2' }}</b></td>
+                                <td class="center" style="border:1px solid #000; padding:6px; text-align: center!important;">{{ it.remarks }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -437,17 +469,29 @@
                         <div></div>
                         <div class="totals-table">
                             <div class="result-subtotal" style="display: flex; justify-content: space-between;">
-                                <div style="font-size: 14px;">Subtotal :</div>
-                                <div style="font-size: 14px;">${{ subtotal | number:'1.2-2' }}</div>
+                                <div style="font-size: 12px;">SUBTOTAL :</div>
+                                <div style="font-size: 12px;">${{ subtotal | number:'1.2-2' }}</div>
+                            </div>
+                            <div class="result-subtotal" style="display: flex; justify-content: space-between;">
+                                <div style="font-size: 12px;">DISCOUNT :</div>
+                                <div style="font-size: 12px;">$</div>
+                            </div>
+                            <div class="result-subtotal" style="display: flex; justify-content: space-between;">
+                                <div style="font-size: 12px;">SUBTOTAL LESS DISCOUNT :</div>
+                                <div style="font-size: 12px;">$</div>
                             </div>
                             <div class="result-tax" style="display: flex; justify-content: space-between;">
-                                <div style="font-size: 14px;">TAX({{ invoice.taxPercent }}%) :</div>
-                                <div style="font-size: 14px;">${{ tax | number:'1.2-2' }}</div>
+                                <div style="font-size: 12px;">TAX({{ invoice.taxPercent }}%) :</div>
+                                <div style="font-size: 12px;">${{ tax | number:'1.2-2' }}</div>
+                            </div>
+                            <div class="result-subtotal" style="display: flex; justify-content: space-between;">
+                                <div style="font-size: 12px;">SHIPPING/HANDLING :</div>
+                                <div style="font-size: 12px;">$</div>
                             </div>
                             <div class="divider"></div>
-                            <div class="grand">
-                                <div style="font-size: 14px; font-weight: bold;">Total Amount:</div>
-                                <div class="right" style="font-size: 14px;"><b>${{ total | number:'1.2-2' }}</b></div>
+                            <div class="grand"> 
+                                <div style="font-size: 18px; font-weight: bold;">Balance Due :</div>
+                                <div class="right" style="font-size: 18px; background-color: #cde2c7;"><b>${{ total | number:'1.2-2' }}</b></div>
                             </div>
                         </div>
                     </div>
@@ -456,18 +500,22 @@
                     <div class="paybox">
                         <div class="kicker">PAYMENT DETAILS</div>
                         <div class="paycols">
-                            <div style="font-size: 12px;">
-                                <div><b>Bank name:</b> {{ invoice.payment.bankName }}</div>
-                                <div><b>Account No:</b> {{ invoice.payment.accountNo }}</div>
-                                <div><b>Swift Code:</b> {{ invoice.payment.swiftCode }}</div>
-                                <div><b>IFSC Code:</b> {{ invoice.payment.ifscCode }}</div>
+                            <div class="payfield">
+                                <div><span class="label">Bank Name:</span><span class="value">{{ invoice.payment.bankName }}</span></div>
+                                <div><span class="label">Account Name:</span><span class="value">{{ invoice.payment.accountName }}</span></div>
+                                <div><span class="label">Bank Country:</span><span class="value">{{ invoice.payment.bankCountry }}</span></div>
+                                <div><span class="label">Account No:</span><span class="value">{{ invoice.payment.accountNo }}</span></div>
+                                <div><span class="label">Swift Code:</span><span class="value">{{ invoice.payment.swiftCode }}</span></div>
+                                <div><span class="label">Citad Code:</span><span class="value">{{ invoice.payment.citadCode }}</span></div>
                             </div>
-                            <div style="font-size: 12px;">
+                            <!-- <div style="font-size: 12px;">
                                 <div><b>Paypal:</b> {{ invoice.payment.paypal }}</div>
                                 <div><b>Link:</b> {{ invoice.payment.paypalLink }}</div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
+
+                    <div class="footer-line" style="width: 100%; height: 20px; background-color: #b1dba3;"></div>
                 </div>
 
             </div>

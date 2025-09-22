@@ -80,14 +80,14 @@
   transition: 0.3s ease-in-out;
 }
 
-.btn-cancel-info{
+.btn-cancel-info {
   background-color: white;
   color: rgb(54, 54, 54);
   border: 1px solid rgb(120, 119, 119);
   transition: 0.3s ease-in-out;
 }
 
-.btn-cancel-info:hover{
+.btn-cancel-info:hover {
   background-color: #dadada;
 }
 
@@ -258,9 +258,19 @@
 }
 
 /* Invoice preview (A4-ish) */
+.title {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 160px;
+  color: #777777 !important;
+}
+
 .preview-invoice {
   background: #fff;
-  padding: 28px 36px;
+  /* padding: 28px 36px; */
   /* border-radius: 14px; */
   border: 1px solid white;
 }
@@ -269,35 +279,43 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  flex-direction: column;
+  background-color: #faf9f9;
 }
 
 .big {
   padding-top: 10px;
-  font-weight: bold;
+  font-weight: 500;
   /* border: 1px solid #e5e7eb; */
 }
 
 .muted {
-  color: black;
   font-size: 16px;
-  margin-top: -10px;
+  /* margin-top: -10px; */
 }
 
 .from {
-  /* display: flex; */
-  gap: 14px;
+  display: table;
+  /* gap: 14px; */
   align-items: flex-start;
-  text-align: right;
+  /* text-align: right; */
+}
+
+.logo {
+  display: table-cell;
+  vertical-align: middle;
+  padding-right: 16px;
 }
 
 .logo img {
-  max-height: 45px;
-  padding-top: 10px;
+  max-height: 80px;
   object-fit: contain;
 }
 
 .from-lines {
   font-size: 12px;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .from-name {
@@ -326,9 +344,15 @@
 
 .bill-name,
 .bill-address,
-.bill-email {
+.bill-email,
+.client-po {
   font-size: 14px;
   margin: 4px 0;
+  font-style: italic;
+}
+
+.client-po{
+  font-weight: bold;
 }
 
 .bill-name {
@@ -359,8 +383,8 @@
 
 .items thead th {
   font-size: 12px;
-  color: #9ca3af;
-  text-align: left;
+  color: black;
+  text-align: center;
   padding: 10px 8px;
   border-bottom: 1px solid #e5e7eb;
 }
@@ -483,8 +507,24 @@
   margin-top: 40px;
 }
 
-.paycols {
+/* .paycols {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 1fr;
   gap: 18px;
+} */
+
+.payfield div {
+  display: grid;
+  grid-template-columns: 120px auto;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.label {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.value {
+  margin-left: 8px;
 }
