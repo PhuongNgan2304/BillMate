@@ -61,3 +61,12 @@
 .tab-content{
     margin-top: 40px;
 }
+
+@media print {
+  .sidebar, .sidebar-toggle {
+    display: none;
+  }
+  .body-section {
+    margin: 0;
+  }
+}

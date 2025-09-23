@@ -264,7 +264,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-left: 160px;
+  margin-left: 180px;
   color: #777777 !important;
 }
 
@@ -414,8 +414,9 @@
 /* Ẩn mọi thứ khi in, trừ phần preview */
 @media print {
   body {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important; 
   }
 
   app-header,
@@ -432,6 +433,9 @@
   #invoicePreview {
     margin: 0;
     width: 100%;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
   }
 
   .no-print {
@@ -456,12 +460,23 @@
 
   #invoicePreview {
     position: absolute;
-    left: 0;
+    left: 1;
+    right: 1px;
     top: 0;
-    width: 210mm;
+    width: 300mm;
     min-height: 297mm;
     /* Tránh vỡ trang ở chỗ không mong muốn */
     page-break-inside: avoid;
+  }
+
+  /* Giữ màu nền cho table header */
+  table.items thead tr th {
+    background-color: #b1dba3 !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .title{
+    margin-left: 200px !important;
   }
 
   /* Nếu nội dung dài nhiều trang, cho phép ngắt trang ở các khối hợp lý */
@@ -504,7 +519,7 @@
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   padding: 16px;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 /* .paycols {
